@@ -1,0 +1,1811 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /contexts/{context}:
+    get:
+      tags:
+      - Contexts
+      summary: retrieve a context
+      description: 'Retrieve a specific context '
+      operationId: getContext
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: context item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+    put:
+      tags:
+      - Contexts
+      summary: update a context
+      description: 'Retrieve a specific context '
+      operationId: updateContext
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - context
+              type: object
+              properties:
+                thumbnail:
+                  type: string
+                  format: binary
+                context:
+                  $ref: '#/components/schemas/Context'
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: context
+    delete:
+      tags:
+      - Contexts
+      summary: delete a context
+      description: 'Delete a specific context '
+      operationId: deleteContext
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: context
+  /contexts/{context}/systems/{system}:
+    get:
+      tags:
+      - Systems
+      summary: retrieve a EGOS-MG based system
+      description: 'Retrieve a specific EGOS-MG based system '
+      operationId: getSystem
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a system
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System_Detailed'
+        "200":
+          description: system item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System_Detailed'
+    put:
+      tags:
+      - Systems
+      summary: update an EGOS-MG based system
+      description: 'Retrieve a specific EGOS-MG based system '
+      operationId: updateSystem
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/System'
+        required: true
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: context
+    delete:
+      tags:
+      - Systems
+      summary: delete an EGOS-MG based system
+      description: 'Retrieve a specific context '
+      operationId: deleteSystem
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a system
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: context
+  /contexts/{context}/systems/{system}/instances/{instance}:
+    get:
+      tags:
+      - Service Instances
+      summary: retrieve service instance
+      description: 'Retrieve a specific service instance '
+      operationId: getInstance
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a system
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+        "200":
+          description: context item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+    put:
+      tags:
+      - Service Instances
+      summary: update a service instance
+      description: 'Update a specific service instance '
+      operationId: updateInstance
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInstance'
+        required: true
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: context
+    delete:
+      tags:
+      - Service Instances
+      summary: delete a service instance
+      description: 'Delete a specific service instance '
+      operationId: deleteInstance
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+        "204":
+          description: service instance
+  /contexts:
+    get:
+      tags:
+      - Contexts
+      summary: retrieve all contexts
+      description: 'Retrieve all contexts items within a given environment iption '
+      operationId: getContexts
+      responses:
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+        "200":
+          description: list of context items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+    post:
+      tags:
+      - Contexts
+      summary: create context
+      description: 'Create a context within a given environment '
+      operationId: createContext
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - context
+              type: object
+              properties:
+                thumbnail:
+                  type: string
+                  format: binary
+                context:
+                  $ref: '#/components/schemas/Context'
+      responses:
+        "400":
+          description: bad input parameter
+        "201":
+          description: context
+  /contexts/{context}/systems:
+    get:
+      tags:
+      - Systems
+      summary: retrieve all EGOS-MG based systems
+      description: 'Retrieve all EGOS-MG based systems items within a given context '
+      operationId: getSystems
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: list of EGOS-MG based systems items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/System_Public'
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/System_Public'
+    post:
+      tags:
+      - Systems
+      summary: register new system package
+      description: 'Register new EGOS-MG based system package supported by the system '
+      operationId: registerPackage
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/System'
+        required: true
+      responses:
+        "400":
+          description: bad input parameter
+        "201":
+          description: System
+  /contexts/{context}/systems/{system}/instances:
+    get:
+      tags:
+      - Service Instances
+      summary: retrieve all service instances
+      description: 'Retrieve all service instances for a given EGOS-MG based systems
+        context '
+      operationId: getInstances
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: list of service instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceInstance'
+        "400":
+          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceInstance'
+    post:
+      tags:
+      - Service Instances
+      summary: create service instance
+      description: 'Create a service instance for a given EGOS-MG based system  '
+      operationId: createInstance
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInstance'
+        required: true
+      responses:
+        "400":
+          description: bad input parameter
+        "201":
+          description: System
+  /contexts/{context}/systems/{system}/instances/{instance}/accessName:
+    patch:
+      tags:
+      - Service Instances
+      summary: Add an access name for a service instance
+      description: Add an access name for a service instance
+      operationId: addAccessName
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              description: access name
+        required: true
+      responses:
+        "400":
+          description: bad input parameter
+        "200":
+          description: service instance
+  /contexts/{context}/thumbnail:
+    get:
+      tags:
+      - Contexts
+      summary: retrieve a context's thumbnail
+      description: Retrieve a specific context thumbnail
+      operationId: getContextThumbnail
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: thumbnail
+          content:
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/Context'
+        "400":
+          description: bad input parameter
+          content:
+            image/png:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            image/jpg:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            image/svg:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            application/octet-stream:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+  /contexts/{context}/systems/{system}/instances/{instance}/session:
+    get:
+      tags:
+      - User Sessions
+      summary: start service instance user session
+      description: start service instance user session
+      operationId: startSession
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a system
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: user session
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Session'
+        "400":
+          description: bad input parameter
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Session'
+    delete:
+      tags:
+      - User Sessions
+      summary: Stop service instance user session
+      description: 'Stop service instance user session '
+      operationId: stopSession
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: user session
+        "400":
+          description: bad input parameter
+  /contexts/{context}/systems/{system}/instances/{instance}/access:
+    get:
+      tags:
+      - Service Instances Access
+      summary: access service instance http interface
+      description: 'Access service instance Web user interface '
+      operationId: accessInstance
+      parameters:
+      - name: context
+        in: path
+        description: identifier of a context
+        required: true
+        schema:
+          type: string
+      - name: system
+        in: path
+        description: identifier of a system
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        description: identifier of a service instance
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad input parameter
+        "200":
+          description: system
+components:
+  schemas:
+    Context:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        children:
+          type: array
+          description: List of the children resource URLs (systems).
+          items:
+            $ref: '#/components/schemas/System'
+      description: Context
+    EndpointLink:
+      type: object
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+    Manifest:
+      type: object
+      properties:
+        kind:
+          type: string
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/PackageMeta'
+        services:
+          type: array
+          description: Logical grouping of end-user�s functions deployable on the
+            infrastructure (as a service instance) and delivering a service to the
+            end user.
+          items:
+            $ref: '#/components/schemas/ManifestService'
+      description: Application Manifest
+    ManifestParameters:
+      type: object
+      properties:
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersProperty'
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersVolume'
+        configMaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersConfigMap'
+        secrets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersSecret'
+    ManifestParametersConfigMap:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        source:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        filters:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestParametersProperty:
+      type: object
+      properties:
+        default:
+          type: string
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        type:
+          type: string
+          enum:
+          - string
+          - integer
+          - boolean
+    ManifestParametersSecret:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        sources:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        matchLabels:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestParametersVolume:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        source:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        filters:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestService:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ServiceMeta'
+        singleton:
+          type: boolean
+        userSession:
+          type: boolean
+        driver:
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ManifestParameters'
+        endpoints:
+          type: array
+          items:
+            type: string
+      description: Logical grouping of end-user�s functions deployable on the infrastructure
+        (as a service instance) and delivering a service to the end user.
+    ObjectMeta:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Name must be unique within the parent object (e.g. environmnent,\
+            \ context, ...)  Is required when creating resources"
+        title:
+          type: string
+          description: Optioanl user-friendly title (default is name)
+        description:
+          type: string
+          description: Summary or short description
+        labels:
+          type: array
+          description: Array of string keys and values that can be used to organize
+            and categorize objects
+          items:
+            type: string
+            description: Array of string keys and values that can be used to organize
+              and categorize objects
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        creator:
+          type: string
+        selfLink:
+          type: string
+          description: SelfLink is a URL representing this object. Populated by the
+            system. Read-only
+        versions:
+          type: array
+          items:
+            type: string
+      description: Standard object metadata
+    PackageMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+    ParameterResource:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        source:
+          type: object
+          description: 'Data origin from the EGOS-MG Runtime Platform being either
+            file-store (volume managed by the File Store Management) or configuration-service
+            (configuration item managed by the Configuration service);  '
+        link:
+          type: object
+          description: ' URL representing the resource'
+      description: 'List of parameters defining a resource managed by the Configuration
+        Service that must be bound to a K8S secret. '
+    ServiceInstance:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        owner:
+          $ref: '#/components/schemas/System'
+        spec:
+          $ref: '#/components/schemas/ServiceInstanceSpec'
+        status:
+          $ref: '#/components/schemas/ServiceInstanceStatus'
+      description: Service instance
+    ServiceInstanceSpec:
+      type: object
+      properties:
+        service:
+          type: string
+          description: Target deployment service (i.e. providing a service)  Required
+            if multiple services are defined.
+        parameters:
+          $ref: '#/components/schemas/ServiceInstanceSpecParameters'
+        endpoints:
+          $ref: '#/components/schemas/EndpointLink'
+      description: Specification of the desired behavior of the ServiceInstance
+    ServiceInstanceSpecParameters:
+      type: object
+      properties:
+        properties:
+          type: array
+          description: List of parameters defining a property which is used in the
+            deployment templates.
+          items:
+            $ref: '#/components/schemas/ServiceInstanceSpecParametersProperties'
+        volumes:
+          type: array
+          description: List of parameters defining a resource managed by the the File
+            Store Management Service or the Configuration Service that must be bound
+            to a K8S volume.
+          items:
+            $ref: '#/components/schemas/ParameterResource'
+        configMaps:
+          type: array
+          description: List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S config map.
+          items:
+            $ref: '#/components/schemas/ParameterResource'
+        secrets:
+          type: array
+          description: 'List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S secret. '
+          items:
+            $ref: '#/components/schemas/ParameterResource'
+      description: Parameters that must bounbed to the K8S resources described in
+        the deployment template of the application.
+    ServiceInstanceSpecParametersProperties:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      description: List of parameters defining a property which is used in the deployment
+        templates.
+    ServiceInstanceStatus:
+      type: object
+      properties:
+        k8s:
+          $ref: '#/components/schemas/ServiceInstanceStatusK8s'
+        status:
+          type: string
+          description: General state of the service instance
+      description: Most recently observed status of the Service Instance
+    ServiceInstanceStatusK8s:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Target K8S namespace
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceInstanceStatusK8sResources'
+        endpoint:
+          type: string
+          description: Identifier of the K8S service that exposes the end user interface
+      description: Kubernetes aspects related to the service instance
+    ServiceInstanceStatusK8sResources:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the kubernetes resource
+        kind:
+          type: string
+          description: Kind of the K8S resource.
+    ServiceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+    System:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        owner:
+          $ref: '#/components/schemas/Context'
+        children:
+          type: array
+          description: List of the children resource URLs (service instances).
+          items:
+            $ref: '#/components/schemas/ServiceInstance'
+        spec:
+          $ref: '#/components/schemas/SystemSpec'
+      description: EGOS-MG based System
+    SystemSpec:
+      type: object
+      properties:
+        package:
+          type: string
+        manifest:
+          $ref: '#/components/schemas/Manifest'
+      description: Specification of the desired behavior of the EGOS-MG based system
+    Context_Public:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Public'
+        children:
+          type: array
+          description: List of the children resource URLs (systems).
+          items:
+            $ref: '#/components/schemas/System_Public'
+      description: Context
+    EndpointLink_Public:
+      type: object
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+    ObjectMeta_Public:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Name must be unique within the parent object (e.g. environmnent,\
+            \ context, ...)  Is required when creating resources"
+        title:
+          type: string
+          description: Optioanl user-friendly title (default is name)
+        description:
+          type: string
+          description: Summary or short description
+        labels:
+          type: array
+          description: Array of string keys and values that can be used to organize
+            and categorize objects
+          items:
+            type: string
+            description: Array of string keys and values that can be used to organize
+              and categorize objects
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        creator:
+          type: string
+        selfLink:
+          type: string
+          description: SelfLink is a URL representing this object. Populated by the
+            system. Read-only
+        versions:
+          type: array
+          items:
+            type: string
+      description: Standard object metadata
+    ParameterResource_Public:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        source:
+          type: object
+          description: 'Data origin from the EGOS-MG Runtime Platform being either
+            file-store (volume managed by the File Store Management) or configuration-service
+            (configuration item managed by the Configuration service);  '
+        link:
+          type: object
+          description: ' URL representing the resource'
+      description: 'List of parameters defining a resource managed by the Configuration
+        Service that must be bound to a K8S secret. '
+    ServiceInstanceSpecParametersProperties_Public:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      description: List of parameters defining a property which is used in the deployment
+        templates.
+    ServiceInstanceSpecParameters_Public:
+      type: object
+      properties:
+        properties:
+          type: array
+          description: List of parameters defining a property which is used in the
+            deployment templates.
+          items:
+            $ref: '#/components/schemas/ServiceInstanceSpecParametersProperties_Public'
+        volumes:
+          type: array
+          description: List of parameters defining a resource managed by the the File
+            Store Management Service or the Configuration Service that must be bound
+            to a K8S volume.
+          items:
+            $ref: '#/components/schemas/ParameterResource_Public'
+        configMaps:
+          type: array
+          description: List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S config map.
+          items:
+            $ref: '#/components/schemas/ParameterResource_Public'
+        secrets:
+          type: array
+          description: 'List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S secret. '
+          items:
+            $ref: '#/components/schemas/ParameterResource_Public'
+      description: Parameters that must bounbed to the K8S resources described in
+        the deployment template of the application.
+    ServiceInstanceSpec_Public:
+      type: object
+      properties:
+        service:
+          type: string
+          description: Target deployment service (i.e. providing a service)  Required
+            if multiple services are defined.
+        parameters:
+          $ref: '#/components/schemas/ServiceInstanceSpecParameters_Public'
+        endpoints:
+          $ref: '#/components/schemas/EndpointLink_Public'
+      description: Specification of the desired behavior of the ServiceInstance
+    ServiceInstanceStatusK8sResources_Public:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the kubernetes resource
+        kind:
+          type: string
+          description: Kind of the K8S resource.
+    ServiceInstanceStatusK8s_Public:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Target K8S namespace
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceInstanceStatusK8sResources_Public'
+        endpoint:
+          type: string
+          description: Identifier of the K8S service that exposes the end user interface
+      description: Kubernetes aspects related to the service instance
+    ServiceInstanceStatus_Public:
+      type: object
+      properties:
+        k8s:
+          $ref: '#/components/schemas/ServiceInstanceStatusK8s_Public'
+        status:
+          type: string
+          description: General state of the service instance
+      description: Most recently observed status of the Service Instance
+    ServiceInstance_Public:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Public'
+        owner:
+          $ref: '#/components/schemas/System_Public'
+        spec:
+          $ref: '#/components/schemas/ServiceInstanceSpec_Public'
+        status:
+          $ref: '#/components/schemas/ServiceInstanceStatus_Public'
+      description: Service instance
+    System_Public:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Public'
+        owner:
+          $ref: '#/components/schemas/Context_Public'
+        children:
+          type: array
+          description: List of the children resource URLs (service instances).
+          items:
+            $ref: '#/components/schemas/ServiceInstance_Public'
+      description: EGOS-MG based System
+    Context_Detailed:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Detailed'
+        children:
+          type: array
+          description: List of the children resource URLs (systems).
+          items:
+            $ref: '#/components/schemas/System_Detailed'
+      description: Context
+    EndpointLink_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+    ManifestParametersConfigMap_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        source:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        filters:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestParametersProperty_Detailed:
+      type: object
+      properties:
+        default:
+          type: string
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        type:
+          type: string
+          enum:
+          - string
+          - integer
+          - boolean
+    ManifestParametersSecret_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        sources:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        matchLabels:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestParametersVolume_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        title:
+          type: object
+          description: Label to be shown as an alternate name on the interface
+        description:
+          type: string
+          description: Short description to be shown as a tooltip in the interface
+        source:
+          type: string
+          description: 'Indication (not restrictive) on the data origin from the EGOS-MG
+            Runtime Platform being either file-store (volume managed by the File Store
+            Management) or configuration-service (file directory managed by the Configuration
+            service);  '
+        scopes:
+          type: array
+          description: "Indication (not restrictive) on the expected level(s) of definition\
+            \ in the EGOS-MG Runtime Platform hierarchy (i.e., environment, context,\
+            \ system, or service - for service instance - );  "
+          items:
+            type: string
+            description: "Indication (not restrictive) on the expected level(s) of\
+              \ definition in the EGOS-MG Runtime Platform hierarchy (i.e., environment,\
+              \ context, system, or service - for service instance - );  "
+        filters:
+          type: array
+          description: 'Indication (not restrictive) on the expected label(s) the
+            artefact should conforms to (labels can be associated to any artefact).  '
+          items:
+            type: string
+            description: 'Indication (not restrictive) on the expected label(s) the
+              artefact should conforms to (labels can be associated to any artefact).  '
+    ManifestParameters_Detailed:
+      type: object
+      properties:
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersProperty_Detailed'
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersVolume_Detailed'
+        configMaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersConfigMap_Detailed'
+        secrets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManifestParametersSecret_Detailed'
+    ManifestService_Detailed:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ServiceMeta_Detailed'
+        singleton:
+          type: boolean
+        userSession:
+          type: boolean
+        driver:
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ManifestParameters_Detailed'
+        endpoints:
+          type: array
+          items:
+            type: string
+      description: Logical grouping of end-user�s functions deployable on the infrastructure
+        (as a service instance) and delivering a service to the end user.
+    Manifest_Detailed:
+      type: object
+      properties:
+        kind:
+          type: string
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/PackageMeta_Detailed'
+        services:
+          type: array
+          description: Logical grouping of end-user�s functions deployable on the
+            infrastructure (as a service instance) and delivering a service to the
+            end user.
+          items:
+            $ref: '#/components/schemas/ManifestService_Detailed'
+      description: Application Manifest
+    ObjectMeta_Detailed:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Name must be unique within the parent object (e.g. environmnent,\
+            \ context, ...)  Is required when creating resources"
+        title:
+          type: string
+          description: Optioanl user-friendly title (default is name)
+        description:
+          type: string
+          description: Summary or short description
+        labels:
+          type: array
+          description: Array of string keys and values that can be used to organize
+            and categorize objects
+          items:
+            type: string
+            description: Array of string keys and values that can be used to organize
+              and categorize objects
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        creator:
+          type: string
+        selfLink:
+          type: string
+          description: SelfLink is a URL representing this object. Populated by the
+            system. Read-only
+        versions:
+          type: array
+          items:
+            type: string
+      description: Standard object metadata
+    PackageMeta_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+    ParameterResource_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the parameter
+        source:
+          type: object
+          description: 'Data origin from the EGOS-MG Runtime Platform being either
+            file-store (volume managed by the File Store Management) or configuration-service
+            (configuration item managed by the Configuration service);  '
+        link:
+          type: object
+          description: ' URL representing the resource'
+      description: 'List of parameters defining a resource managed by the Configuration
+        Service that must be bound to a K8S secret. '
+    ServiceInstanceSpecParametersProperties_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      description: List of parameters defining a property which is used in the deployment
+        templates.
+    ServiceInstanceSpecParameters_Detailed:
+      type: object
+      properties:
+        properties:
+          type: array
+          description: List of parameters defining a property which is used in the
+            deployment templates.
+          items:
+            $ref: '#/components/schemas/ServiceInstanceSpecParametersProperties_Detailed'
+        volumes:
+          type: array
+          description: List of parameters defining a resource managed by the the File
+            Store Management Service or the Configuration Service that must be bound
+            to a K8S volume.
+          items:
+            $ref: '#/components/schemas/ParameterResource_Detailed'
+        configMaps:
+          type: array
+          description: List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S config map.
+          items:
+            $ref: '#/components/schemas/ParameterResource_Detailed'
+        secrets:
+          type: array
+          description: 'List of parameters defining a resource managed by the Configuration
+            Service that must be bound to a K8S secret. '
+          items:
+            $ref: '#/components/schemas/ParameterResource_Detailed'
+      description: Parameters that must bounbed to the K8S resources described in
+        the deployment template of the application.
+    ServiceInstanceSpec_Detailed:
+      type: object
+      properties:
+        service:
+          type: string
+          description: Target deployment service (i.e. providing a service)  Required
+            if multiple services are defined.
+        parameters:
+          $ref: '#/components/schemas/ServiceInstanceSpecParameters_Detailed'
+        endpoints:
+          $ref: '#/components/schemas/EndpointLink_Detailed'
+      description: Specification of the desired behavior of the ServiceInstance
+    ServiceInstanceStatusK8sResources_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the kubernetes resource
+        kind:
+          type: string
+          description: Kind of the K8S resource.
+    ServiceInstanceStatusK8s_Detailed:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Target K8S namespace
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceInstanceStatusK8sResources_Detailed'
+        endpoint:
+          type: string
+          description: Identifier of the K8S service that exposes the end user interface
+      description: Kubernetes aspects related to the service instance
+    ServiceInstanceStatus_Detailed:
+      type: object
+      properties:
+        k8s:
+          $ref: '#/components/schemas/ServiceInstanceStatusK8s_Detailed'
+        status:
+          type: string
+          description: General state of the service instance
+      description: Most recently observed status of the Service Instance
+    ServiceInstance_Detailed:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Detailed'
+        owner:
+          $ref: '#/components/schemas/System_Detailed'
+        spec:
+          $ref: '#/components/schemas/ServiceInstanceSpec_Detailed'
+        status:
+          $ref: '#/components/schemas/ServiceInstanceStatus_Detailed'
+      description: Service instance
+    ServiceMeta_Detailed:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+    SystemSpec_Detailed:
+      type: object
+      properties:
+        package:
+          type: string
+        manifest:
+          $ref: '#/components/schemas/Manifest_Detailed'
+      description: Specification of the desired behavior of the EGOS-MG based system
+    System_Detailed:
+      type: object
+      properties:
+        uid:
+          type: integer
+          description: UID is the internal unique value for this object. It is typically
+            generated by the server on successful creation of a resource and is not
+            allowed to change on PUT operations.  The intent of reporting the uid
+            is for debugging purpose only.
+          format: int64
+        kind:
+          type: string
+          description: Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated.
+          enum:
+          - Context
+          - Environment
+          - System
+          - ServiceInstance
+          - Application
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta_Detailed'
+        owner:
+          $ref: '#/components/schemas/Context_Detailed'
+        children:
+          type: array
+          description: List of the children resource URLs (service instances).
+          items:
+            $ref: '#/components/schemas/ServiceInstance_Detailed'
+        spec:
+          $ref: '#/components/schemas/SystemSpec_Detailed'
+      description: EGOS-MG based System
+    Session:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/SessionMeta'
+        status:
+          type: string
+          enum:
+          - CREATING
+          - STARTING
+          - RUNNING
+        owner:
+          $ref: '#/components/schemas/ServiceInstance'
+    SessionMeta:
+      type: object
+      properties:
+        username:
+          type: string
+        creation:
+          type: string
+          format: date-time
+        expiration:
+          type: string
+          format: date-time
