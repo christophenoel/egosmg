@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "bd175d87-4624-4bc6-8661-26174629b2be",
+		"name": "Operational File Store Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Volumes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/environments/environmentName/contexts/context_name/systems/system_name/instances/instance_name/volumes?matchLabels=label1,label2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"environments",
+						"environmentName",
+						"contexts",
+						"context_name",
+						"systems",
+						"system_name",
+						"instances",
+						"instance_name",
+						"volumes"
+					],
+					"query": [
+						{
+							"key": "matchLabels",
+							"value": "label1,label2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Volume",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/environments/environmentName/contexts/context_name/systems/system_name/instances/instance_name/volumes/volume_name",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"environments",
+						"environmentName",
+						"contexts",
+						"context_name",
+						"systems",
+						"system_name",
+						"instances",
+						"instance_name",
+						"volumes",
+						"volume_name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Volume",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"kind\": \"Volume\",\r\n  \"metadata\": {\r\n    \"name\": \"volume_name\",\r\n    \"title\": \"Volume Name\",\r\n    \"description\": \"This is the description of this volume\",\r\n    \"labels\": [\r\n      \"label1\",\r\n      \"label2\"\r\n    ]\r\n  },\r\n  \"spec\": {\r\n    \"storageCapacity\": \"1Gi\",\r\n    \"accessMode\": \"ReadWriteMany\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/environments/environmentName/contexts/context_name/systems/system_name/instances/instance_name/volumes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"environments",
+						"environmentName",
+						"contexts",
+						"context_name",
+						"systems",
+						"system_name",
+						"instances",
+						"instance_name",
+						"volumes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Volume",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/environments/environmentName/contexts/context_name/systems/system_name/instances/instance_name/volumes/volume_name",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"environments",
+						"environmentName",
+						"contexts",
+						"context_name",
+						"systems",
+						"system_name",
+						"instances",
+						"instance_name",
+						"volumes",
+						"volume_name"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
